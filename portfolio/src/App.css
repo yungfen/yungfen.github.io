@@ -6,6 +6,35 @@
   overflow-x: clip;
 }
 
+/* magic cursor */
+.magic-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.cursor-glow {
+  position: fixed;
+  left: var(--mx, 50vw);
+  top: var(--my, -200px);
+  width: 360px;
+  height: 360px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--iris) 14%, transparent), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (prefers-reduced-motion: reduce), (hover: none) {
+  .cursor-glow {
+    display: none;
+  }
+}
+
 /* ambient background glows */
 .glow {
   position: fixed;
@@ -78,12 +107,37 @@ header h1 em {
 .card {
   display: flex;
   flex-direction: column;
-  padding: 1.75rem;
   border-radius: 20px;
   background: var(--surface);
   border: 1px solid var(--border);
   backdrop-filter: blur(12px);
+  overflow: hidden;
   transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.card-media {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.4s ease;
+}
+
+.card:hover .card-media img {
+  transform: scale(1.03);
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 1.5rem 1.75rem 1.75rem;
 }
 
 .card.featured {
