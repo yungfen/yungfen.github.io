@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 
 const projects = [
@@ -42,7 +42,45 @@ const projects = [
   }
 ]
 
+const earlierProjects = [
+  {
+    title: 'Time Management iOS App',
+    year: '2024',
+    image: '/screenshots/legacy/ios-app.png',
+    description: 'The original iOS prototype that grew into Make Time.',
+    tech: ['Swift', 'UI Design', 'Project Management']
+  },
+  {
+    title: 'English Learning Website — Western Festivals',
+    year: '2023',
+    url: 'https://learn-english-western-festival.netlify.app/',
+    image: '/screenshots/legacy/western-festivals.png',
+    description: 'Learn English through Western festival culture.',
+    tech: ['HTML5', 'JavaScript', 'Bootstrap', 'UI Design']
+  },
+  {
+    title: 'English Learning App',
+    year: '2024',
+    image: '/screenshots/legacy/english-learning-app.png',
+    description: 'Mobile English learning app built with MIT App Inventor.',
+    tech: ['MIT App Inventor', 'UI Design']
+  },
+  {
+    title: 'Guess the Number',
+    year: '2023',
+    image: '/screenshots/legacy/guess-number.png',
+    description: 'A classic number guessing game built in Java.',
+    tech: ['Java', 'UI Design', 'UI Integration']
+  }
+]
+
 const SPARKLE_COLORS = ['#ebbcba', '#c4a7e7', '#9ccfd8', '#f6c177']
+
+const confirmLeave = e => {
+  if (!window.confirm('You are leaving this site. Continue?')) {
+    e.preventDefault()
+  }
+}
 
 function MagicCursor() {
   const canvasRef = useRef(null)
@@ -132,6 +170,7 @@ function ProjectCard({ project }) {
       href={project.url}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={confirmLeave}
       className={`card accent-${project.accent}${project.featured ? ' featured' : ''}`}
     >
       <div className="card-media">
@@ -157,6 +196,70 @@ function ProjectCard({ project }) {
   )
 }
 
+function EarlierCard({ project }) {
+  const inner = (
+    <>
+      <div className="card-media">
+        <img src={project.image} alt={`${project.title} screenshot`} loading="lazy" />
+      </div>
+      <div className="card-body">
+        <div className="card-top">
+          <span className="card-index">{project.year}</span>
+          {project.url && <span className="card-arrow">↗</span>}
+        </div>
+        <h3>{project.title}</h3>
+        <p>{project.description}</p>
+        <div className="tech-row">
+          {project.tech.map(t => <span key={t} className="tech">{t}</span>)}
+        </div>
+      </div>
+    </>
+  )
+  return project.url ? (
+    <a href={project.url} target="_blank" rel="noopener noreferrer" onClick={confirmLeave} className="card earlier accent-rose">
+      {inner}
+    </a>
+  ) : (
+    <div className="card earlier static">{inner}</div>
+  )
+}
+
+function Contact() {
+  const [sent, setSent] = useState(false)
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    const data = new FormData(e.target)
+    const subject = encodeURIComponent(`Portfolio message from ${data.get('name')}`)
+    const body = encodeURIComponent(`${data.get('message')}\n\n— ${data.get('name')} (${data.get('email')})`)
+    window.location.href = `mailto:tiff2021any@gmail.com?subject=${subject}&body=${body}`
+    setSent(true)
+  }
+
+  return (
+    <section id="contact" className="section">
+      <h2 className="section-title">Contact Me</h2>
+      <p className="section-lede">If you have any questions or would like to get in touch, feel free to reach out!</p>
+      <form className="contact-form" onSubmit={handleSubmit}>
+        <div className="field">
+          <label htmlFor="name">Name</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div className="field">
+          <label htmlFor="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div className="field">
+          <label htmlFor="message">Message</label>
+          <textarea id="message" name="message" rows="5" required />
+        </div>
+        <button type="submit" className="send-btn">Send</button>
+        {sent && <p className="sent-note">Your email client should open — thanks for reaching out!</p>}
+      </form>
+    </section>
+  )
+}
+
 function App() {
   return (
     <div className="app">
@@ -165,6 +268,15 @@ function App() {
       <div className="glow glow-2" />
       <div className="cursor-glow" />
 
+      <nav className="navbar">
+        <span className="nav-name">Yung-Fen Liu</span>
+        <div className="nav-links">
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+
       <header>
         <span className="eyebrow">Tiffany · Portfolio</span>
         <h1>
@@ -172,19 +284,58 @@ function App() {
           <em>agentic coding</em>
         </h1>
         <p className="lede">
-          Web apps, an iOS app, and a Chrome extension — designed, built, and
-          deployed through AI-agent-driven development with Claude Code.
+          Welcome to my portfolio — explore my projects and skills. Web apps, an
+          iOS app, and a Chrome extension, designed, built, and deployed through
+          AI-agent-driven development with Claude Code.
         </p>
       </header>
 
-      <main className="grid">
-        {projects.map(project => (
-          <ProjectCard key={project.title} project={project} />
-        ))}
+      <main>
+        <section id="projects" className="section">
+          <h2 className="section-title">Latest Projects</h2>
+          <div className="grid">
+            {projects.map(project => (
+              <ProjectCard key={project.title} project={project} />
+            ))}
+          </div>
+
+          <h2 className="section-title earlier-title">Earlier Projects</h2>
+          <div className="grid">
+            {earlierProjects.map(project => (
+              <EarlierCard key={project.title} project={project} />
+            ))}
+          </div>
+        </section>
+
+        <section id="about" className="section">
+          <h2 className="section-title">About Me</h2>
+          <p className="section-lede">
+            I am a software developer with a passion for creating innovative solutions.
+          </p>
+          <div className="about-grid">
+            <div className="about-block">
+              <h3>Skills</h3>
+              <p>HTML, JavaScript, TypeScript</p>
+            </div>
+            <div className="about-block">
+              <h3>Learning</h3>
+              <p>Swift, Python</p>
+            </div>
+            <div className="about-block">
+              <h3>Interests</h3>
+              <p>
+                Learning languages (Japanese, Korean, German, Spanish, and French),
+                Traveling, Photography, Sports (Badminton)
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <Contact />
       </main>
 
       <footer>
-        <span>© 2026 Tiffany</span>
+        <span>© 2026 Yung-Fen Liu</span>
         <span className="dot">·</span>
         <span>Built with Claude Code</span>
         <span className="dot">·</span>
