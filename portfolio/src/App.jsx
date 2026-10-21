@@ -59,7 +59,8 @@ const sideProjects = [
     description: 'Record books, highlights, and a personal shelf, then chat with Inzai — answered on-device with Apple Intelligence, or by a Claude-powered "library curator" with clear privacy toggles for what goes to the cloud.',
     tech: ['SwiftUI', 'Apple Intelligence', 'Cloudflare Workers', 'D1', 'Claude API'],
     accent: 'gold',
-    platforms: ['iOS']
+    platforms: ['iOS'],
+    status: 'TestFlight beta'
   },
   {
     title: 'Tutoring Toolkit',
@@ -242,7 +243,7 @@ function SideCard({ project }) {
       <div className="card-body">
         <div className="card-top">
           <span className="card-index">{project.subtitle}</span>
-          <span className="card-badge">In progress</span>
+          <span className="card-badge">{project.status ?? 'In progress'}</span>
         </div>
         <h3>{project.title}</h3>
         <p>{project.description}</p>
