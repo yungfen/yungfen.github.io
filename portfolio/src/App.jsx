@@ -59,7 +59,9 @@ const sideProjects = [
     gallery: [
       '/screenshots/book-collector.png',
       '/screenshots/book-collector-2.png',
-      '/screenshots/book-collector-3.png'
+      '/screenshots/book-collector-3.png',
+      '/screenshots/book-collector-4.png',
+      '/screenshots/book-collector-5.png'
     ],
     description: 'Record books, highlights, and a personal shelf, then chat with Inzai — answered on-device with Apple Intelligence, or by a Claude-powered "library curator" with clear privacy toggles for what goes to the cloud.',
     tech: ['SwiftUI', 'Apple Intelligence', 'Cloudflare Workers', 'D1', 'Claude API'],
