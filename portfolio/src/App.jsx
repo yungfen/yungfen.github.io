@@ -352,19 +352,19 @@ function App() {
       <header>
         <span className="eyebrow">Yung-Fen (Tiffany) Liu · Digital Portfolio</span>
         <h1>
-          Apps shipped with<br />
-          <em>agentic coding</em>
+          Solutions for<br />
+          <em>teachers and learners</em>
         </h1>
         <p className="lede">
-          Welcome to my digital portfolio — explore my projects and skills. Web apps, an
-          iOS app, and a Chrome extension, designed, built, and deployed through
-          AI-agent-driven development with Claude Code.
+          Welcome to my digital portfolio — tools for English teachers and learners,
+          plus apps for the things I love. Web and iOS apps designed, built, and
+          deployed through AI-agent-driven development with Claude Code.
         </p>
       </header>
 
       <main>
         <section id="projects" className="section">
-          <h2 className="section-title">Solutions for Teachers and Learners</h2>
+          <h2 className="section-title">Featured Projects</h2>
           <ProjectGrid items={learnerProjects} />
 
           <h3 className="section-subtitle">Other hobbies: reading and traveling</h3>
