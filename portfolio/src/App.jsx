@@ -65,7 +65,7 @@ const sideProjects = [
     title: 'Tutoring Toolkit',
     subtitle: 'Test generator + class records',
     icon: '📝',
-    description: 'Builds junior-high English quizzes from my own question bank: template picker, drag-to-reorder, Word-style in-page editing, and student / answer-key versions ready to print. Class records track each student\'s mistakes to steer the next quiz.',
+    description: 'Designs junior-high English quiz questions based on English textbooks in Taiwan (Hanlin): template picker, drag-to-reorder, Word-style in-page editing, and student / answer-key versions ready to print. Class records track each student\'s mistakes to steer the next quiz.',
     tech: ['JavaScript', 'HTML/CSS', 'Python'],
     accent: 'iris',
     platforms: ['Web']
@@ -364,7 +364,7 @@ function App() {
 
       <main>
         <section id="projects" className="section">
-          <h2 className="section-title">Solutions for Learners</h2>
+          <h2 className="section-title">Solutions for Teachers and Learners</h2>
           <ProjectGrid items={learnerProjects} />
 
           <h3 className="section-subtitle">Other hobbies: reading and traveling</h3>
