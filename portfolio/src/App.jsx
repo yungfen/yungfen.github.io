@@ -5,7 +5,7 @@ const projects = [
   {
     title: 'English Town',
     subtitle: 'VR English Practice',
-    url: 'https://english-town-tiffany.netlify.app/',
+    url: 'https://english-town.yungfen.workers.dev/',
     image: '/screenshots/english-town.png',
     description: 'Immersive language learning in a 3D neighborhood. Walk around, talk to AI-powered residents by text or voice, and build vocabulary through real interactions — powered by Claude and ElevenLabs voices.',
     tech: ['React', 'Three.js', 'Claude API', 'ElevenLabs'],
@@ -278,13 +278,13 @@ function App() {
       </nav>
 
       <header>
-        <span className="eyebrow">Tiffany · Portfolio</span>
+        <span className="eyebrow">Yung-Fen (Tiffany) Liu · Digital Portfolio</span>
         <h1>
           Apps shipped with<br />
           <em>agentic coding</em>
         </h1>
         <p className="lede">
-          Welcome to my portfolio — explore my projects and skills. Web apps, an
+          Welcome to my digital portfolio — explore my projects and skills. Web apps, an
           iOS app, and a Chrome extension, designed, built, and deployed through
           AI-agent-driven development with Claude Code.
         </p>
