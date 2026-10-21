@@ -499,6 +499,27 @@ footer {
   background: var(--accent);
 }
 
+.features {
+  margin: -0.25rem 0 1rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.features summary {
+  cursor: pointer;
+  width: fit-content;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.features ul {
+  margin: 0.6rem 0 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.35rem;
+  line-height: 1.5;
+}
+
 .card-badge {
   font-size: 0.7rem;
   font-weight: 600;

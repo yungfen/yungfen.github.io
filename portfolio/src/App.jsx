@@ -63,7 +63,20 @@ const sideProjects = [
       '/screenshots/book-collector-4.png',
       '/screenshots/book-collector-5.png'
     ],
-    description: 'Record books, highlights, and a personal shelf, then chat with Inzai — answered on-device with Apple Intelligence, or by a Claude-powered "library curator" with clear privacy toggles for what goes to the cloud.',
+    description: 'A cozy iOS library for the books I own — organized by where each one sits, with Inzai the owl as an AI reading buddy.',
+    features: [
+      'Bookshelf organized by where each book sits; wishlist, favorites, paper / e-book, lending',
+      'Add books by scanning barcodes (continuous), snapping the cover, or typing a title / ISBN',
+      'Shelf inventory: scan a shelf to see what\'s there and what\'s missing',
+      'Highlights & notes, including page photos with text recognition and automatic page numbers',
+      'Import from Goodreads / StoryGraph, Readwise and Notion; iCloud Drive backup & restore',
+      'Reading log, reading timer, yearly review & achievements, daily quote, letters to your future self, and Poke Box to pick a forgotten book',
+      'Drafts with a rich-text editor; export to PDF, Markdown, image, or formatted text with references',
+      'New Books: monthly new releases from Taiwan\'s National Central Library, plus recent award winners',
+      'Inzai AI reading buddy: on-device Apple Intelligence for your own notes, Claude in the cloud for book knowledge, sending only what you allow (cloud answers: fix in progress)',
+      'Home Screen & Lock Screen widgets with quick note, plus a Lock Screen / Dynamic Island reading timer (new, in TestFlight testing)',
+      'Traditional Chinese and English interface'
+    ],
     tech: ['SwiftUI', 'Apple Intelligence', 'Cloudflare Workers', 'D1', 'Claude API'],
     accent: 'gold',
     platforms: ['iOS'],
@@ -286,6 +299,14 @@ function SideCard({ project }) {
         </div>
         <h3>{project.title}</h3>
         <p>{project.description}</p>
+        {project.features && (
+          <details className="features">
+            <summary>Features</summary>
+            <ul>
+              {project.features.map(f => <li key={f}>{f}</li>)}
+            </ul>
+          </details>
+        )}
         <div className="platforms">
           {project.platforms.map(p => <span key={p}>{p}</span>)}
         </div>
