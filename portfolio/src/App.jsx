@@ -47,10 +47,23 @@ const sideProjects = [
     title: 'Clipway',
     subtitle: 'Saved posts → trip itinerary',
     icon: '🧭',
-    description: 'Turns the places I save from Instagram and YouTube into a day-by-day travel plan — keeps the creator\'s tips, shows opening hours, maps each day\'s route, and starts every day from the hotel.',
+    image: '/screenshots/clipway.png',
+    description: 'Turns the places I save from Instagram and YouTube into a day-by-day travel plan, keeping each creator\'s tips along the way.',
+    features: [
+      'Share an Instagram or YouTube link into the app to pull out the restaurants and sights it mentions, keeping the creator\'s tips',
+      'One shared inbox of saved places, used by every trip',
+      'Trips split into days; tick places, assign them to a day, and drag to reorder',
+      'Map of each day\'s route with numbered stops, one colour per day',
+      'Google opening hours in the place list and detail view',
+      'Set a hotel per trip, so each day starts and ends there',
+      'Share a trip as an image, with map, hand-drawn map or boarding-pass card styles',
+      'Traditional Chinese and English interface',
+      'In progress: one-tap day planning and a printable A5 trip booklet (PDF)'
+    ],
     tech: ['SwiftUI', 'SwiftData', 'Google Maps SDK', 'Google Places API'],
     accent: 'foam',
-    platforms: ['iOS']
+    platforms: ['iOS'],
+    status: 'TestFlight beta'
   },
   {
     title: 'Book Collector',
