@@ -66,7 +66,7 @@ const sideProjects = [
     title: 'Tutoring Toolkit',
     subtitle: 'Test generator + class records',
     icon: '📝',
-    description: 'Designs junior-high English quiz questions based on English textbooks in Taiwan (Hanlin): template picker, drag-to-reorder, Word-style in-page editing, and student / answer-key versions ready to print. Class records track each student\'s mistakes to steer the next quiz.',
+    description: 'Designs junior-high English quiz questions based on English textbooks in Taiwan (Hanlin, Grade 8, Units 1–3), using original and adapted sentences: template picker, drag-to-reorder, Word-style in-page editing, docx worksheet import, and student / red-answer teacher versions ready to print. Class records log each student\'s mistakes to steer the next quiz.',
     tech: ['JavaScript', 'HTML/CSS', 'Python'],
     accent: 'iris',
     platforms: ['Web']
