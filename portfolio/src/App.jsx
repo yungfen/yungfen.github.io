@@ -73,9 +73,7 @@ const sideProjects = [
     gallery: [
       '/screenshots/book-collector.png',
       '/screenshots/book-collector-2.png',
-      '/screenshots/book-collector-3.png',
-      '/screenshots/book-collector-4.png',
-      '/screenshots/book-collector-5.png'
+      '/screenshots/book-collector-3.png'
     ],
     description: 'A cozy iOS library for the books I own — organized by where each one sits, with Inzai the owl as an AI reading buddy.',
     features: [
