@@ -439,6 +439,66 @@ footer {
   transform: scale(1.08) rotate(-4deg);
 }
 
+.gallery {
+  position: relative;
+}
+
+.gallery-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: rgba(25, 23, 36, 0.7);
+  color: var(--text);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.gallery-btn.prev { left: 0.6rem; }
+.gallery-btn.next { right: 0.6rem; }
+
+.gallery:hover .gallery-btn,
+.gallery-btn:focus-visible {
+  opacity: 1;
+}
+
+.gallery-btn:hover {
+  background: color-mix(in srgb, var(--accent) 35%, var(--bg));
+}
+
+@media (hover: none) {
+  .gallery-btn { opacity: 1; }
+}
+
+.gallery-dots {
+  position: absolute;
+  bottom: 0.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.4rem;
+}
+
+.gallery-dots button {
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+}
+
+.gallery-dots button.active {
+  background: var(--accent);
+}
+
 .card-badge {
   font-size: 0.7rem;
   font-weight: 600;

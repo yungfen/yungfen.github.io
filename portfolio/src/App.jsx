@@ -56,7 +56,11 @@ const sideProjects = [
     title: 'Book Collector',
     subtitle: 'Reading log with an AI librarian',
     icon: '📚',
-    image: '/screenshots/book-collector.png',
+    gallery: [
+      '/screenshots/book-collector.png',
+      '/screenshots/book-collector-2.png',
+      '/screenshots/book-collector-3.png'
+    ],
     description: 'Record books, highlights, and a personal shelf, then chat with Inzai — answered on-device with Apple Intelligence, or by a Claude-powered "library curator" with clear privacy toggles for what goes to the cloud.',
     tech: ['SwiftUI', 'Apple Intelligence', 'Cloudflare Workers', 'D1', 'Claude API'],
     accent: 'gold',
@@ -235,10 +239,36 @@ function ProjectCard({ project }) {
   )
 }
 
+function Gallery({ title, images }) {
+  const [index, setIndex] = useState(0)
+  const go = step => setIndex(i => (i + step + images.length) % images.length)
+
+  return (
+    <div className="card-media gallery">
+      <img src={images[index]} alt={`${title} screenshot ${index + 1} of ${images.length}`} loading="lazy" />
+      <button type="button" className="gallery-btn prev" onClick={() => go(-1)} aria-label="Previous screenshot">‹</button>
+      <button type="button" className="gallery-btn next" onClick={() => go(1)} aria-label="Next screenshot">›</button>
+      <div className="gallery-dots">
+        {images.map((src, i) => (
+          <button
+            key={src}
+            type="button"
+            className={i === index ? 'active' : ''}
+            onClick={() => setIndex(i)}
+            aria-label={`Show screenshot ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
 function SideCard({ project }) {
   return (
     <div className={`card static side accent-${project.accent}`}>
-      {project.image ? (
+      {project.gallery ? (
+        <Gallery title={project.title} images={project.gallery} />
+      ) : project.image ? (
         <div className="card-media">
           <img src={project.image} alt={`${project.title} screenshot`} loading="lazy" />
         </div>
