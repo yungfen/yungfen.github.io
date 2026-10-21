@@ -56,6 +56,7 @@ const sideProjects = [
     title: 'Book Collector',
     subtitle: 'Reading log with an AI librarian',
     icon: '📚',
+    image: '/screenshots/book-collector.png',
     description: 'Record books, highlights, and a personal shelf, then chat with Inzai — answered on-device with Apple Intelligence, or by a Claude-powered "library curator" with clear privacy toggles for what goes to the cloud.',
     tech: ['SwiftUI', 'Apple Intelligence', 'Cloudflare Workers', 'D1', 'Claude API'],
     accent: 'gold',
@@ -237,9 +238,15 @@ function ProjectCard({ project }) {
 function SideCard({ project }) {
   return (
     <div className={`card static side accent-${project.accent}`}>
-      <div className="card-media side-media" aria-hidden="true">
-        <span>{project.icon}</span>
-      </div>
+      {project.image ? (
+        <div className="card-media">
+          <img src={project.image} alt={`${project.title} screenshot`} loading="lazy" />
+        </div>
+      ) : (
+        <div className="card-media side-media" aria-hidden="true">
+          <span>{project.icon}</span>
+        </div>
+      )}
       <div className="card-body">
         <div className="card-top">
           <span className="card-index">{project.subtitle}</span>
