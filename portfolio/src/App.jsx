@@ -42,6 +42,43 @@ const projects = [
   }
 ]
 
+const sideProjects = [
+  {
+    title: 'Clipway',
+    subtitle: 'Saved posts → trip itinerary',
+    icon: '🧭',
+    description: 'Turns the places I save from Instagram and YouTube into a day-by-day travel plan — keeps the creator\'s tips, shows opening hours, maps each day\'s route, and starts every day from the hotel.',
+    tech: ['SwiftUI', 'SwiftData', 'Google Maps SDK', 'Google Places API'],
+    accent: 'foam',
+    platforms: ['iOS']
+  },
+  {
+    title: 'Book Collector',
+    subtitle: 'Reading log with an AI librarian',
+    icon: '📚',
+    description: 'Record books, highlights, and a personal shelf, then chat with Inzai — answered on-device with Apple Intelligence, or by a Claude-powered "library curator" with clear privacy toggles for what goes to the cloud.',
+    tech: ['SwiftUI', 'Apple Intelligence', 'Cloudflare Workers', 'D1', 'Claude API'],
+    accent: 'gold',
+    platforms: ['iOS']
+  },
+  {
+    title: 'Tutoring Toolkit',
+    subtitle: 'Test generator + class records',
+    icon: '📝',
+    description: 'Builds junior-high English quizzes from my own question bank: template picker, drag-to-reorder, Word-style in-page editing, and student / answer-key versions ready to print. Class records track each student\'s mistakes to steer the next quiz.',
+    tech: ['JavaScript', 'HTML/CSS', 'Python'],
+    accent: 'iris',
+    platforms: ['Web']
+  }
+]
+
+const allProjects = [...projects, ...sideProjects]
+const pick = titles => titles.map(t => allProjects.find(p => p.title === t))
+
+const learnerProjects = pick(['English Town', 'Tutoring Toolkit', 'Comment Generator'])
+const hobbyProjects = pick(['Book Collector', 'Clipway'])
+const moreProjects = pick(['Make Time', 'Daily Bible Quote'])
+
 const earlierProjects = [
   {
     title: 'Time Management iOS App',
@@ -196,6 +233,41 @@ function ProjectCard({ project }) {
   )
 }
 
+function SideCard({ project }) {
+  return (
+    <div className={`card static side accent-${project.accent}`}>
+      <div className="card-media side-media" aria-hidden="true">
+        <span>{project.icon}</span>
+      </div>
+      <div className="card-body">
+        <div className="card-top">
+          <span className="card-index">{project.subtitle}</span>
+          <span className="card-badge">In progress</span>
+        </div>
+        <h3>{project.title}</h3>
+        <p>{project.description}</p>
+        <div className="platforms">
+          {project.platforms.map(p => <span key={p}>{p}</span>)}
+        </div>
+        <div className="tech-row">
+          {project.tech.map(t => <span key={t} className="tech">{t}</span>)}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function ProjectGrid({ items }) {
+  return (
+    <div className="grid">
+      {items.map(project => project.url
+        ? <ProjectCard key={project.title} project={project} />
+        : <SideCard key={project.title} project={project} />
+      )}
+    </div>
+  )
+}
+
 function EarlierCard({ project }) {
   const inner = (
     <>
@@ -292,12 +364,14 @@ function App() {
 
       <main>
         <section id="projects" className="section">
-          <h2 className="section-title">Latest Projects</h2>
-          <div className="grid">
-            {projects.map(project => (
-              <ProjectCard key={project.title} project={project} />
-            ))}
-          </div>
+          <h2 className="section-title">Solutions for Learners</h2>
+          <ProjectGrid items={learnerProjects} />
+
+          <h3 className="section-subtitle">Other hobbies: reading and traveling</h3>
+          <ProjectGrid items={hobbyProjects} />
+
+          <h3 className="section-subtitle">More Projects</h3>
+          <ProjectGrid items={moreProjects} />
 
           <h2 className="section-title earlier-title">Earlier Projects</h2>
           <div className="grid">

@@ -105,6 +105,13 @@
   margin: 0 0 0.75rem;
 }
 
+.section-subtitle {
+  font-size: 1.3rem;
+  letter-spacing: -0.01em;
+  color: var(--text-muted);
+  margin: 2.5rem 0 0.75rem;
+}
+
 .earlier-title {
   margin-top: 3rem;
 }
@@ -404,6 +411,41 @@ footer {
 
 .card.static {
   cursor: default;
+}
+
+.card.side {
+  --accent: var(--rose);
+}
+.card.side.accent-iris { --accent: var(--iris); }
+.card.side.accent-foam { --accent: var(--foam); }
+.card.side.accent-gold { --accent: var(--gold); }
+
+.side-media {
+  aspect-ratio: 16 / 7;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--accent) 35%, transparent), transparent 60%),
+    linear-gradient(135deg, var(--bg-soft), color-mix(in srgb, var(--accent) 12%, var(--bg)));
+}
+
+.side-media span {
+  font-size: 3.2rem;
+  filter: drop-shadow(0 6px 18px color-mix(in srgb, var(--accent) 40%, transparent));
+  transition: transform 0.25s ease;
+}
+
+.card.side:hover .side-media span {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.card-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
 .card.earlier .card-media {
