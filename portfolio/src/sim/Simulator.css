@@ -1,3 +1,12 @@
+/* wallpaper shared by the lock and home screens */
+:root {
+  --ios-wallpaper:
+    radial-gradient(circle at 28% 30%, rgba(242, 166, 90, 0.55), transparent 42%),
+    radial-gradient(circle at 72% 36%, rgba(215, 130, 126, 0.5), transparent 40%),
+    radial-gradient(circle at 48% 68%, rgba(90, 169, 214, 0.5), transparent 44%),
+    #fbf6f1;
+}
+
 .ios-device {
   position: relative;
   width: 100%;
@@ -118,7 +127,7 @@
   display: flex !important;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(175deg, #f4f1f7 0%, #e4e0ec 100%) !important;
+  background: var(--ios-wallpaper) !important;
   color: #2f2b45 !important;
   animation: ios-fade 0.6s ease;
 }
@@ -187,7 +196,7 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(175deg, #f4f1f7 0%, #e4e0ec 100%);
+  background: var(--ios-wallpaper);
   color: #2f2b45;
   animation: ios-home-in 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
