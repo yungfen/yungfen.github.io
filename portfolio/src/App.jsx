@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
+import { confirmLeave } from './confirmLeave.js'
+import Hero from './hero/Hero.jsx'
 
 const projects = [
   {
@@ -146,11 +148,6 @@ const earlierProjects = [
 
 const SPARKLE_COLORS = ['#ebbcba', '#c4a7e7', '#9ccfd8', '#f6c177']
 
-const confirmLeave = e => {
-  if (!window.confirm('You are leaving this site. Continue?')) {
-    e.preventDefault()
-  }
-}
 
 function MagicCursor() {
   const canvasRef = useRef(null)
@@ -422,18 +419,7 @@ function App() {
         </div>
       </nav>
 
-      <header>
-        <span className="eyebrow">Yung-Fen (Tiffany) Liu · Digital Portfolio</span>
-        <h1>
-          Solutions for<br />
-          <em>teachers and learners</em>
-        </h1>
-        <p className="lede">
-          Welcome to my digital portfolio — tools for English teachers and learners,
-          plus apps for the things I love. Web and iOS apps designed, built, and
-          deployed through AI-agent-driven development with Claude Code.
-        </p>
-      </header>
+      <Hero />
 
       <main>
         <section id="projects" className="section">
