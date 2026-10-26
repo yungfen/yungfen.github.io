@@ -9,7 +9,7 @@ const projects = [
     subtitle: 'VR English Practice',
     url: 'https://english-town.yungfen.workers.dev/',
     image: '/screenshots/english-town.png',
-    description: 'Immersive language learning in a 3D neighborhood. Walk around, talk to AI-powered residents by text or voice, and build vocabulary through real interactions — powered by Claude and ElevenLabs voices.',
+    description: ['Walk around a 3D English-speaking town', 'Talk to AI residents by text or voice', 'Build vocabulary through real conversations'],
     tech: ['React', 'Three.js', 'Claude API', 'ElevenLabs'],
     accent: 'iris',
     featured: true
@@ -19,7 +19,7 @@ const projects = [
     subtitle: 'Cross-platform time management',
     url: 'https://make-time.netlify.app/',
     image: '/screenshots/make-time.png',
-    description: 'Task and time management that follows you everywhere — web app, native iOS app built with SwiftUI + SwiftData, and a Chrome Extension.',
+    description: ['Tasks and time management in one place', 'Web app, native iOS app and Chrome extension', 'Your list follows you on every device'],
     tech: ['React', 'SwiftUI', 'SwiftData', 'Chrome Extension'],
     accent: 'foam',
     platforms: ['Web', 'iOS', 'Chrome']
@@ -29,7 +29,7 @@ const projects = [
     subtitle: 'Bilingual scripture widget',
     url: 'https://daily-bible-quote-widget.netlify.app/',
     image: '/screenshots/bible.png',
-    description: 'Daily scripture in English (KJV) and Chinese, with multiple design themes, device-sized wallpapers, and shareable story / post formats.',
+    description: ['A daily verse in English (KJV) and Chinese', 'Several design themes', 'Save as wallpaper or share as a story / post'],
     tech: ['React', 'Canvas'],
     accent: 'gold'
   },
@@ -38,7 +38,7 @@ const projects = [
     subtitle: 'Montessori teacher feedback',
     url: 'https://teacher-evaulation.netlify.app/',
     image: '/screenshots/teacher.png',
-    description: 'Turns raw classroom observations into positive, Montessori-aligned student feedback. CSV/Excel import, batch generation, and export built for real classroom scale.',
+    description: ['Turns classroom notes into positive, Montessori-aligned comments', 'Import a whole class from CSV / Excel', 'Generate and export in batches'],
     tech: ['React', 'Claude API'],
     accent: 'rose'
   }
@@ -50,7 +50,7 @@ const sideProjects = [
     subtitle: 'Saved posts → trip itinerary',
     icon: '🧭',
     image: '/screenshots/clipway.png',
-    description: 'Turns the places I save from Instagram, YouTube and screenshots into a day-by-day travel plan on a map.',
+    description: ['Save places from Instagram, YouTube and screenshots', 'Plan each day of a trip on a map', 'Share trips as cards or a printable booklet'],
     features: [
       'Collect places from Instagram posts, YouTube videos and screenshots: the app reads the caption, description or image text and finds each shop on Google Maps',
       'Share a post straight into Clipway from Instagram, YouTube or Safari',
@@ -77,7 +77,7 @@ const sideProjects = [
       '/screenshots/book-collector-2.png',
       '/screenshots/book-collector-3.png'
     ],
-    description: 'A cozy iOS library for the books I own — organized by where each one sits, with Inzai the owl as an AI reading buddy.',
+    description: ['Shelve books by where they really sit', 'Scan barcodes to add books fast', 'Inzai the owl, an AI reading buddy'],
     features: [
       'Bookshelf organized by where each book sits; wishlist, favorites, paper / e-book, lending',
       'Add books by scanning barcodes (continuous), snapping the cover, or typing a title / ISBN',
@@ -100,7 +100,7 @@ const sideProjects = [
     title: 'Tutoring Toolkit',
     subtitle: 'Test generator + class records',
     icon: '📝',
-    description: 'Designs junior-high English quiz questions based on English textbooks in Taiwan (Hanlin, Grade 8, Units 1–3), using original and adapted sentences: template picker, drag-to-reorder, Word-style in-page editing, docx worksheet import, and student / red-answer teacher versions ready to print. Class records log each student\'s mistakes to steer the next quiz.',
+    description: ['Quiz questions from Taiwan junior-high textbooks (Hanlin, Grade 8)', 'Edit in the page, print student and teacher versions', 'Class records track mistakes for the next quiz'],
     tech: ['JavaScript', 'HTML/CSS', 'Python'],
     accent: 'iris',
     platforms: ['Web']
@@ -231,6 +231,14 @@ function MagicCursor() {
   return <canvas ref={canvasRef} className="magic-canvas" aria-hidden="true" />
 }
 
+function Points({ items }) {
+  return (
+    <ul className="card-points">
+      {items.map(item => <li key={item}>{item}</li>)}
+    </ul>
+  )
+}
+
 function ProjectCard({ project }) {
   return (
     <a
@@ -249,7 +257,7 @@ function ProjectCard({ project }) {
           <span className="card-arrow">↗</span>
         </div>
         <h3>{project.title}</h3>
-        <p>{project.description}</p>
+        <Points items={project.description} />
         {project.platforms && (
           <div className="platforms">
             {project.platforms.map(p => <span key={p}>{p}</span>)}
@@ -307,7 +315,7 @@ function SideCard({ project }) {
           <span className="card-badge">{project.status ?? 'In progress'}</span>
         </div>
         <h3>{project.title}</h3>
-        <p>{project.description}</p>
+        <Points items={project.description} />
         {project.features && (
           <details className="features">
             <summary>Features</summary>
