@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Yung-Fen Liu">
+  <g style="mix-blend-mode:multiply">
+    <circle cx="25" cy="25" r="17" fill="#f2a65a" opacity=".9"/>
+    <circle cx="40" cy="27" r="15" fill="#d7827e" opacity=".85"/>
+    <circle cx="31" cy="42" r="15" fill="#5aa9d6" opacity=".8"/>
+  </g>
+  <path d="M25 21l6 8 6-8M31 29v10" stroke="#fff" stroke-width="3.6" stroke-linecap="round" fill="none"/>
+</svg>

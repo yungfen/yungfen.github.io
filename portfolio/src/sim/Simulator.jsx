@@ -18,14 +18,14 @@ function LockScreen({ now, onUnlock }) {
   const date = now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })
   return (
     <button type="button" className="ios-lock" onClick={onUnlock} aria-label="Unlock the phone">
-      <StatusBar now={now} />
+      <StatusBar now={now} tone="dark" />
       <div className="lock-date">{date}</div>
       <div className="lock-time">{hhmm(now)}</div>
       <div className="lock-note">
         <span className="lock-note-icon">👩🏻‍🏫</span>
         <span>
           <strong>Tiffany</strong>
-          <span>Turn teaching ideas into products. Tap to try my apps!</span>
+          <span>Turn ideas into products. Tap to try my apps!</span>
         </span>
       </div>
       <div className="lock-hint">Tap to unlock</div>
@@ -47,10 +47,10 @@ function HomeScreen({ now, onOpen }) {
   const grid = apps.filter(a => !dock.includes(a.id))
   return (
     <div className="ios-home">
-      <StatusBar now={now} />
+      <StatusBar now={now} tone="dark" />
       <div className="home-widget">
         <span className="widget-eyebrow">Yung-Fen (Tiffany) Liu</span>
-        <strong>Teaching ideas → products</strong>
+        <strong>Ideas → products</strong>
         <span>Tap any app to try it.</span>
       </div>
       <div className="home-grid">

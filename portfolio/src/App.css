@@ -24,7 +24,7 @@
   height: 360px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--iris) 14%, transparent), transparent 70%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--rose) 14%, transparent), transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -48,7 +48,7 @@
 .glow-1 {
   width: 480px;
   height: 480px;
-  background: var(--iris);
+  background: var(--sun);
   top: -160px;
   right: -120px;
 }
@@ -56,7 +56,7 @@
 .glow-2 {
   width: 420px;
   height: 420px;
-  background: var(--foam);
+  background: var(--sky);
   bottom: -180px;
   left: -140px;
 }
@@ -70,9 +70,18 @@
 }
 
 .nav-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: inherit;
+  text-decoration: none;
   font-weight: 700;
   letter-spacing: -0.01em;
   font-size: 1.05rem;
+}
+
+.nav-logo {
+  display: block;
 }
 
 .nav-links {
@@ -236,7 +245,7 @@ header h1 {
 
 header h1 em {
   font-style: normal;
-  background: linear-gradient(120deg, var(--rose), var(--iris) 60%, var(--foam));
+  background: linear-gradient(120deg, var(--sun), var(--rose) 50%, var(--sky));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

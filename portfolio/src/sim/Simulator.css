@@ -1,3 +1,12 @@
+/* wallpaper shared by the lock and home screens */
+:root {
+  --ios-wallpaper:
+    radial-gradient(circle at 28% 30%, rgba(242, 166, 90, 0.55), transparent 42%),
+    radial-gradient(circle at 72% 36%, rgba(215, 130, 126, 0.5), transparent 40%),
+    radial-gradient(circle at 48% 68%, rgba(90, 169, 214, 0.5), transparent 44%),
+    #fbf6f1;
+}
+
 .ios-device {
   position: relative;
   width: 100%;
@@ -94,7 +103,7 @@
   height: 5px;
   transform: translateX(-50%);
   border-radius: 3px;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(47, 43, 69, 0.75);
   z-index: 6;
 }
 
@@ -118,12 +127,8 @@
   display: flex !important;
   flex-direction: column;
   align-items: center;
-  background:
-    radial-gradient(circle at 20% 12%, #ffd6a5 0, transparent 45%),
-    radial-gradient(circle at 85% 65%, #7fd1dc 0, transparent 50%),
-    radial-gradient(circle at 30% 95%, #ff9fb2 0, transparent 45%),
-    #a58fe0 !important;
-  text-shadow: 0 1px 8px rgba(60, 40, 110, 0.25);
+  background: var(--ios-wallpaper) !important;
+  color: #2f2b45 !important;
   animation: ios-fade 0.6s ease;
 }
 
@@ -154,7 +159,7 @@
   align-items: center;
   padding: 12px 14px;
   border-radius: 22px;
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(20px);
   font-size: 14px;
   text-align: left;
@@ -191,11 +196,8 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  background:
-    radial-gradient(circle at 15% 10%, #ffd6a5 0, transparent 40%),
-    radial-gradient(circle at 90% 55%, #7fd1dc 0, transparent 45%),
-    radial-gradient(circle at 30% 100%, #ff9fb2 0, transparent 45%),
-    #a58fe0;
+  background: var(--ios-wallpaper);
+  color: #2f2b45;
   animation: ios-home-in 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -207,7 +209,7 @@
   margin: 10px 22px 8px;
   padding: 14px 16px;
   border-radius: 22px;
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(18px);
   display: flex;
   flex-direction: column;
@@ -273,7 +275,7 @@
 
 .ios-app-name {
   font-size: 11.5px;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  color: #4a4660;
   white-space: nowrap;
 }
 
@@ -289,18 +291,18 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(47, 43, 69, 0.2);
 }
 
 .home-dots span.on {
-  background: #fff;
+  background: #2f2b45;
 }
 
 .home-dock {
   margin: 0 12px 26px;
   padding: 14px 16px;
   border-radius: 32px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(24px);
   display: flex;
   justify-content: space-between;
