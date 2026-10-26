@@ -72,6 +72,12 @@
   animation: idea-pop 0.5s cubic-bezier(0.3, 1.6, 0.4, 1);
 }
 
+/* once lit, skip the entrance animation so the bubble never blinks out */
+.idea.lit:not(.pop) {
+  animation: idea-float 5s ease-in-out infinite;
+  animation-delay: calc(var(--i) * -0.7s);
+}
+
 .idea-icon {
   font-size: 1.05rem;
 }
@@ -182,4 +188,129 @@
 
 .hero h1 {
   font-size: clamp(2.3rem, 4.8vw, 3.7rem);
+}
+
+/* guide card for the open app */
+.app-guide {
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface-hover);
+  box-shadow: 0 10px 30px rgba(87, 82, 121, 0.1);
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  animation: guide-in 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes guide-in {
+  from { opacity: 0; transform: translateY(8px); }
+}
+
+.guide-head {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.6rem;
+}
+
+.guide-head > div {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.guide-head strong {
+  color: var(--text);
+  font-size: 1.02rem;
+}
+
+.guide-icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 0.65rem;
+  font-size: 1.3rem;
+}
+
+.guide-icon.plain {
+  background: var(--bg-soft);
+}
+
+.guide-eyebrow {
+  font-family: 'SF Mono', ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.app-guide p {
+  margin: 0 0 0.6rem;
+  color: var(--text);
+}
+
+.app-guide ol {
+  margin: 0 0 0.6rem;
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.guide-ui {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  font-size: 0.75rem;
+}
+
+/* A: card beside the phone */
+.hero.layout-a {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
+}
+
+.layout-a .hero-phone {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.layout-a .phone-stage,
+.layout-a .phone-stage-placeholder {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.layout-a .app-guide {
+  flex: 0 0 230px;
+}
+
+/* B: card under the phone */
+.layout-b .app-guide {
+  max-width: 400px;
+  margin: -0.5rem auto 0;
+}
+
+/* C: card in the text column */
+.layout-c .app-guide {
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 860px) {
+  .layout-a .hero-phone {
+    flex-direction: column;
+  }
+
+  .layout-a .phone-stage {
+    width: 100%;
+    flex: none;
+  }
+
+  .layout-a .app-guide {
+    flex: none;
+    width: 100%;
+    max-width: 400px;
+  }
 }

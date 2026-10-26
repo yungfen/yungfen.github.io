@@ -1,6 +1,7 @@
 import { lazy, Suspense, useRef, useState } from 'react'
 import Simulator from '../sim/Simulator.jsx'
 import IdeaBubbles from './IdeaBubbles.jsx'
+import AppGuide from './AppGuide.jsx'
 import './Hero.css'
 
 const PhoneScene = lazy(() => import('./PhoneScene.jsx'))
@@ -14,10 +15,10 @@ const hasWebGL = (() => {
   }
 })()
 
-function FlatPhone({ request }) {
+function FlatPhone({ request, onViewChange }) {
   return (
     <div className="flat-phone">
-      <Simulator request={request} />
+      <Simulator request={request} onViewChange={onViewChange} />
     </div>
   )
 }
@@ -26,7 +27,10 @@ export default function Hero() {
   const [ready, setReady] = useState(!hasWebGL)
   const [skip, setSkip] = useState(false)
   const [request, setRequest] = useState(null)
+  const [view, setView] = useState('lock')
   const phoneRef = useRef(null)
+  // layout options for the guide card, previewed with ?guide=a|b|c
+  const layout = new URLSearchParams(window.location.search).get('guide') || 'a'
 
   const openApp = id => {
     setSkip(true)
@@ -38,7 +42,7 @@ export default function Hero() {
   }
 
   return (
-    <header className={`hero ${ready ? 'ready' : 'intro'}`}>
+    <header className={`hero layout-${layout} ${ready ? 'ready' : 'intro'}`}>
       <div className="hero-text">
         <span className="eyebrow">Yung-Fen (Tiffany) Liu · Digital Portfolio</span>
         <h1>
@@ -51,6 +55,7 @@ export default function Hero() {
           deployed through AI-agent-driven development with Claude Code.
         </p>
         <p className="hero-hint">💭 Every app started as a question. Tap one to see what it became.</p>
+        {layout === 'c' && ready && <AppGuide view={view} layout={layout} />}
         <IdeaBubbles onPick={openApp} />
         <a href="#projects" className="hero-link">See all projects ↓</a>
       </div>
@@ -59,12 +64,13 @@ export default function Hero() {
         {hasWebGL ? (
           <Suspense fallback={<div className="phone-stage-placeholder" />}>
             <PhoneScene onIntroDone={() => setReady(true)} skip={skip}>
-              <Simulator request={request} />
+              <Simulator request={request} onViewChange={setView} />
             </PhoneScene>
           </Suspense>
         ) : (
-          <FlatPhone request={request} />
+          <FlatPhone request={request} onViewChange={setView} />
         )}
+        {layout !== 'c' && ready && <AppGuide view={view} layout={layout} />}
         {!ready && (
           <button type="button" className="skip-intro" onClick={() => setSkip(true)}>Skip intro ›</button>
         )}
