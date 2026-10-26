@@ -40,11 +40,19 @@ function roundedRect(w, h, r) {
   return s
 }
 
+// phone finish, matched to the logo palette
+const PHONE_COLORS = {
+  frame: 0xe9e4ee,
+  back: 0xf6efe9,
+  bump: 0xece6e6,
+  ring: 0xc9c1c8
+}
+
 function buildPhone() {
   const phone = new THREE.Group()
 
   const frameMat = new THREE.MeshPhysicalMaterial({
-    color: 0xd9cfe3,
+    color: PHONE_COLORS.frame,
     metalness: 0.9,
     roughness: 0.28,
     clearcoat: 0.6,
@@ -75,7 +83,7 @@ function buildPhone() {
   // frosted back glass
   const back = new THREE.Mesh(
     new THREE.ShapeGeometry(roundedRect(PHONE_W - 10, PHONE_H - 10, PHONE_R - 5), 24),
-    new THREE.MeshPhysicalMaterial({ color: 0xe6dcef, roughness: 0.55, metalness: 0.05, clearcoat: 0.2 })
+    new THREE.MeshPhysicalMaterial({ color: PHONE_COLORS.back, roughness: 0.55, metalness: 0.05, clearcoat: 0.2 })
   )
   back.rotation.y = Math.PI
   back.position.z = -FRONT_Z - 0.4
@@ -86,13 +94,13 @@ function buildPhone() {
     new THREE.ExtrudeGeometry(roundedRect(170, 170, 46), {
       depth: 6, bevelEnabled: true, bevelThickness: 2, bevelSize: 2, bevelSegments: 3, curveSegments: 16
     }),
-    new THREE.MeshPhysicalMaterial({ color: 0xd8cce6, roughness: 0.25, metalness: 0.2, clearcoat: 1 })
+    new THREE.MeshPhysicalMaterial({ color: PHONE_COLORS.bump, roughness: 0.25, metalness: 0.2, clearcoat: 1 })
   )
   bump.rotation.y = Math.PI
   bump.position.set(PHONE_W / 2 - 110, PHONE_H / 2 - 110, -FRONT_Z - 0.5)
   phone.add(bump)
 
-  const ringMat = new THREE.MeshStandardMaterial({ color: 0xbdb2cc, metalness: 1, roughness: 0.3 })
+  const ringMat = new THREE.MeshStandardMaterial({ color: PHONE_COLORS.ring, metalness: 1, roughness: 0.3 })
   const lensMat = new THREE.MeshPhysicalMaterial({ color: 0x0a0a14, roughness: 0.05, clearcoat: 1, metalness: 0.3 })
   const lensPos = [[-38, 38], [-38, -38], [38, 0]]
   for (const [lx, ly] of lensPos) {
