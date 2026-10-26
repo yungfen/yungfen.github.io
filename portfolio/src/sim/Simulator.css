@@ -1328,6 +1328,14 @@
   object-fit: cover;
 }
 
+.scr-video-contain {
+  background: #fff8e1;
+}
+
+.scr-video-contain video {
+  object-fit: contain;
+}
+
 .mode-pill {
   position: absolute !important;
   z-index: 7;
