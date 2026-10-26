@@ -23,15 +23,6 @@ export const apps = [
     tagline: 'Grade 8 quiz generator + class records'
   },
   {
-    id: 'comments',
-    name: 'Comments',
-    icon: '🌱',
-    bg: 'linear-gradient(145deg, #ebbcba, #d16d8c)',
-    kind: 'web',
-    url: 'https://teacher-portal.yungfen.workers.dev/',
-    tagline: 'Montessori-aligned student feedback'
-  },
-  {
     id: 'transport',
     name: '交通工具篇',
     icon: '🚌',
