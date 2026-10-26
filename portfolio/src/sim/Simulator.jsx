@@ -68,7 +68,7 @@ function HomeScreen({ now, onOpen }) {
 // Real screen recording for an app (set `video` in apps.js); plays muted in a loop.
 function ScreenVideo({ app }) {
   return (
-    <div className="scr scr-video">
+    <div className={`scr scr-video${app.videoFit === 'contain' ? ' scr-video-contain' : ''}`}>
       <video src={app.video} poster={app.poster} autoPlay muted loop playsInline aria-label={`${app.name} screen recording`} />
     </div>
   )

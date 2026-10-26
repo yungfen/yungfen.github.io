@@ -3,7 +3,6 @@ import { useState } from 'react'
 const ideas = [
   { app: 'english-town', q: 'What if we could learn English in a virtual town?' },
   { app: 'tutoring', q: 'What if a quiz could be built from the textbook in minutes?' },
-  { app: 'comments', q: 'What if report comments took seconds, not hours?' },
   { app: 'transport', q: 'What if kids learned vehicle words with pictures and sound?' },
   { app: 'book-collector', q: 'What if my bookshelf had an AI reading buddy?' },
   { app: 'clipway', q: 'What if saved posts became a trip plan?' },

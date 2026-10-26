@@ -32,15 +32,6 @@ const projects = [
     description: ['A daily verse in English (KJV) and Chinese', 'Several design themes', 'Save as wallpaper or share as a story / post'],
     tech: ['React', 'Canvas'],
     accent: 'gold'
-  },
-  {
-    title: 'Comment Generator',
-    subtitle: 'Montessori teacher feedback',
-    url: 'https://teacher-evaulation.netlify.app/',
-    image: '/screenshots/teacher.png',
-    description: ['Turns classroom notes into positive, Montessori-aligned comments', 'Import a whole class from CSV / Excel', 'Generate and export in batches'],
-    tech: ['React', 'Claude API'],
-    accent: 'rose'
   }
 ]
 
@@ -110,7 +101,7 @@ const sideProjects = [
 const allProjects = [...projects, ...sideProjects]
 const pick = titles => titles.map(t => allProjects.find(p => p.title === t))
 
-const learnerProjects = pick(['English Town', 'Tutoring Toolkit', 'Comment Generator'])
+const learnerProjects = pick(['English Town', 'Tutoring Toolkit'])
 const hobbyProjects = pick(['Book Collector', 'Clipway'])
 const moreProjects = pick(['Make Time', 'Daily Bible Quote'])
 

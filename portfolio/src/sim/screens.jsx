@@ -235,69 +235,6 @@ export function Tutoring({ app, now, toast }) {
   )
 }
 
-/* ---------- Comment Generator ---------- */
-
-const traits = [
-  { id: 'focus', label: 'Focused', text: 'works with deep concentration and often chooses challenging work on their own' },
-  { id: 'kind', label: 'Kind to peers', text: 'shows grace and courtesy, offering help to younger friends in the classroom' },
-  { id: 'indep', label: 'Independent', text: 'is growing in independence, preparing and returning materials with care' },
-  { id: 'curious', label: 'Curious', text: 'asks thoughtful questions and loves to explore new materials' },
-  { id: 'tidy', label: 'Learning to tidy up', text: 'is learning to restore the environment after work, and responds well to gentle reminders' },
-  { id: 'lang', label: 'Loves stories', text: 'enjoys storytelling and is building a rich vocabulary' }
-]
-
-export function Comments({ app, now, toast }) {
-  const [name, setName] = useState('Mia')
-  const [sel, setSel] = useState(['focus', 'kind'])
-  const [out, setOut] = useState('')
-  const [shown, setShown] = useState('')
-
-  useEffect(() => {
-    if (!out) return
-    let n = 0
-    const id = setInterval(() => {
-      n += 3
-      setShown(out.slice(0, n))
-      if (n >= out.length) clearInterval(id)
-    }, 16)
-    return () => clearInterval(id)
-  }, [out])
-
-  const toggle = id => setSel(s => (s.includes(id) ? s.filter(x => x !== id) : [...s, id]))
-  const generate = () => {
-    const chosen = traits.filter(t => sel.includes(t.id))
-    if (!chosen.length) {
-      toast('Pick at least one observation')
-      return
-    }
-    const who = name.trim() || 'This child'
-    const body = chosen.map((t, k) => (k === 0 ? `${who} ${t.text}` : `${who.split(' ')[0]} also ${t.text}`)).join('. ')
-    setShown('')
-    setOut(`${body}. It is a joy to watch ${who.split(' ')[0]} grow this term!`)
-  }
-
-  return (
-    <div className="scr scr-rose">
-      <StatusBar now={now} tone="dark" />
-      <Header title="Comment Generator" />
-      <div className="form">
-        <label>Student
-          <input value={name} onChange={e => setName(e.target.value)} />
-        </label>
-        <span className="form-label">Observations</span>
-        <div className="chips wrap">
-          {traits.map(t => (
-            <button key={t.id} type="button" className={`chip ${sel.includes(t.id) ? 'on' : ''}`} onClick={() => toggle(t.id)}>{t.label}</button>
-          ))}
-        </div>
-        <button type="button" className="get-btn wide" onClick={generate}>✨ Generate comment</button>
-        {out && <div className="comment-out">{shown}<span className="caret" /></div>}
-      </div>
-      <div className="scr-foot"><GetButton app={app} toast={toast} /></div>
-    </div>
-  )
-}
-
 /* ---------- 英語輕鬆學：交通工具篇 (MIT App Inventor) ---------- */
 
 const vehicles = [
