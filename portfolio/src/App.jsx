@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
+import { confirmLeave } from './confirmLeave.js'
+import Hero from './hero/Hero.jsx'
 
 const projects = [
   {
     title: 'English Town',
     subtitle: 'VR English Practice',
-    url: 'https://english-town-tiffany.netlify.app/',
+    url: 'https://english-town.yungfen.workers.dev/',
     image: '/screenshots/english-town.png',
     description: 'Immersive language learning in a 3D neighborhood. Walk around, talk to AI-powered residents by text or voice, and build vocabulary through real interactions — powered by Claude and ElevenLabs voices.',
     tech: ['React', 'Three.js', 'Claude API', 'ElevenLabs'],
@@ -42,6 +44,76 @@ const projects = [
   }
 ]
 
+const sideProjects = [
+  {
+    title: 'Clipway',
+    subtitle: 'Saved posts → trip itinerary',
+    icon: '🧭',
+    image: '/screenshots/clipway.png',
+    description: 'Turns the places I save from Instagram, YouTube and screenshots into a day-by-day travel plan on a map.',
+    features: [
+      'Collect places from Instagram posts, YouTube videos and screenshots: the app reads the caption, description or image text and finds each shop on Google Maps',
+      'Share a post straight into Clipway from Instagram, YouTube or Safari',
+      'Collection organised into Finder-style folders, created automatically by city',
+      'Plan trips day by day on a map, with numbered routes and a daily start and end at your hotel',
+      'Opening hours from Google, with a warning when a place is closed on the day you planned it',
+      'Share a folder or a trip as an image card (postcard, poster, boarding pass and more)',
+      'Export a printable A5 trip booklet (PDF) with a cover photo, daily maps and a checklist',
+      'Hand places off to other apps, open directions in Google Maps, back up and restore',
+      'Traditional Chinese and English',
+      'In progress: one-tap auto-planning, nested folders (city > district)'
+    ],
+    tech: ['SwiftUI', 'SwiftData', 'Google Maps SDK', 'Google Places API'],
+    accent: 'foam',
+    platforms: ['iOS'],
+    status: 'TestFlight beta'
+  },
+  {
+    title: 'Book Collector',
+    subtitle: 'Reading log with an AI librarian',
+    icon: '📚',
+    gallery: [
+      '/screenshots/book-collector.png',
+      '/screenshots/book-collector-2.png',
+      '/screenshots/book-collector-3.png'
+    ],
+    description: 'A cozy iOS library for the books I own — organized by where each one sits, with Inzai the owl as an AI reading buddy.',
+    features: [
+      'Bookshelf organized by where each book sits; wishlist, favorites, paper / e-book, lending',
+      'Add books by scanning barcodes (continuous), snapping the cover, or typing a title / ISBN',
+      'Shelf inventory: scan a shelf to see what\'s there and what\'s missing',
+      'Highlights & notes, including page photos with text recognition and automatic page numbers',
+      'Import from Goodreads / StoryGraph, Readwise and Notion; iCloud Drive backup & restore',
+      'Reading log, reading timer, yearly review & achievements, daily quote, letters to your future self, and Poke Box to pick a forgotten book',
+      'Drafts with a rich-text editor; export to PDF, Markdown, image, or formatted text with references',
+      'New Books: monthly new releases from Taiwan\'s National Central Library, plus recent award winners',
+      'Inzai AI reading buddy: on-device Apple Intelligence for your own notes, Claude in the cloud for book knowledge, sending only what you allow (cloud answers: fix in progress)',
+      'Home Screen & Lock Screen widgets with quick note, plus a Lock Screen / Dynamic Island reading timer (new, in TestFlight testing)',
+      'Traditional Chinese and English interface'
+    ],
+    tech: ['SwiftUI', 'Apple Intelligence', 'Cloudflare Workers', 'D1', 'Claude API'],
+    accent: 'gold',
+    platforms: ['iOS'],
+    status: 'TestFlight beta'
+  },
+  {
+    title: 'Tutoring Toolkit',
+    subtitle: 'Test generator + class records',
+    icon: '📝',
+    description: 'Designs junior-high English quiz questions based on English textbooks in Taiwan (Hanlin, Grade 8, Units 1–3), using original and adapted sentences: template picker, drag-to-reorder, Word-style in-page editing, docx worksheet import, and student / red-answer teacher versions ready to print. Class records log each student\'s mistakes to steer the next quiz.',
+    tech: ['JavaScript', 'HTML/CSS', 'Python'],
+    accent: 'iris',
+    platforms: ['Web']
+  }
+]
+
+const allProjects = [...projects, ...sideProjects]
+const pick = titles => titles.map(t => allProjects.find(p => p.title === t))
+
+const learnerProjects = pick(['English Town', 'Tutoring Toolkit', 'Comment Generator'])
+const hobbyProjects = pick(['Book Collector', 'Clipway'])
+const moreProjects = pick(['Make Time', 'Daily Bible Quote'])
+
 const earlierProjects = [
   {
     title: 'Time Management iOS App',
@@ -74,13 +146,8 @@ const earlierProjects = [
   }
 ]
 
-const SPARKLE_COLORS = ['#ebbcba', '#c4a7e7', '#9ccfd8', '#f6c177']
+const SPARKLE_COLORS = ['#e8a09c', '#a98ad6', '#5fb3c1', '#f0b04f']
 
-const confirmLeave = e => {
-  if (!window.confirm('You are leaving this site. Continue?')) {
-    e.preventDefault()
-  }
-}
 
 function MagicCursor() {
   const canvasRef = useRef(null)
@@ -196,6 +263,81 @@ function ProjectCard({ project }) {
   )
 }
 
+function Gallery({ title, images }) {
+  const [index, setIndex] = useState(0)
+  const go = step => setIndex(i => (i + step + images.length) % images.length)
+
+  return (
+    <div className="card-media gallery">
+      <img src={images[index]} alt={`${title} screenshot ${index + 1} of ${images.length}`} loading="lazy" />
+      <button type="button" className="gallery-btn prev" onClick={() => go(-1)} aria-label="Previous screenshot">‹</button>
+      <button type="button" className="gallery-btn next" onClick={() => go(1)} aria-label="Next screenshot">›</button>
+      <div className="gallery-dots">
+        {images.map((src, i) => (
+          <button
+            key={src}
+            type="button"
+            className={i === index ? 'active' : ''}
+            onClick={() => setIndex(i)}
+            aria-label={`Show screenshot ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function SideCard({ project }) {
+  return (
+    <div className={`card static side accent-${project.accent}`}>
+      {project.gallery ? (
+        <Gallery title={project.title} images={project.gallery} />
+      ) : project.image ? (
+        <div className="card-media">
+          <img src={project.image} alt={`${project.title} screenshot`} loading="lazy" />
+        </div>
+      ) : (
+        <div className="card-media side-media" aria-hidden="true">
+          <span>{project.icon}</span>
+        </div>
+      )}
+      <div className="card-body">
+        <div className="card-top">
+          <span className="card-index">{project.subtitle}</span>
+          <span className="card-badge">{project.status ?? 'In progress'}</span>
+        </div>
+        <h3>{project.title}</h3>
+        <p>{project.description}</p>
+        {project.features && (
+          <details className="features">
+            <summary>Features</summary>
+            <ul>
+              {project.features.map(f => <li key={f}>{f}</li>)}
+            </ul>
+          </details>
+        )}
+        <div className="platforms">
+          {project.platforms.map(p => <span key={p}>{p}</span>)}
+        </div>
+        <div className="tech-row">
+          {project.tech.map(t => <span key={t} className="tech">{t}</span>)}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function ProjectGrid({ items }) {
+  return (
+    <div className="grid">
+      {items.map(project => project.url
+        ? <ProjectCard key={project.title} project={project} />
+        : <SideCard key={project.title} project={project} />
+      )}
+    </div>
+  )
+}
+
 function EarlierCard({ project }) {
   const inner = (
     <>
@@ -277,27 +419,18 @@ function App() {
         </div>
       </nav>
 
-      <header>
-        <span className="eyebrow">Tiffany · Portfolio</span>
-        <h1>
-          Apps shipped with<br />
-          <em>agentic coding</em>
-        </h1>
-        <p className="lede">
-          Welcome to my portfolio — explore my projects and skills. Web apps, an
-          iOS app, and a Chrome extension, designed, built, and deployed through
-          AI-agent-driven development with Claude Code.
-        </p>
-      </header>
+      <Hero />
 
       <main>
         <section id="projects" className="section">
-          <h2 className="section-title">Latest Projects</h2>
-          <div className="grid">
-            {projects.map(project => (
-              <ProjectCard key={project.title} project={project} />
-            ))}
-          </div>
+          <h2 className="section-title">Featured Projects</h2>
+          <ProjectGrid items={learnerProjects} />
+
+          <h3 className="section-subtitle">Other hobbies: reading and traveling</h3>
+          <ProjectGrid items={hobbyProjects} />
+
+          <h3 className="section-subtitle">More Projects</h3>
+          <ProjectGrid items={moreProjects} />
 
           <h2 className="section-title earlier-title">Earlier Projects</h2>
           <div className="grid">
