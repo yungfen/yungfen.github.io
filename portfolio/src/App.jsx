@@ -419,7 +419,10 @@ function App() {
       <div className="cursor-glow" />
 
       <nav className="navbar">
-        <span className="nav-name">Yung-Fen Liu</span>
+        <a className="nav-name" href="#">
+          <img className="nav-logo" src="/logo.svg" alt="" width="30" height="30" />
+          Yung-Fen Liu
+        </a>
         <div className="nav-links">
           <a href="#projects">Projects</a>
           <a href="#about">About</a>
