@@ -74,7 +74,7 @@ function ScreenVideo({ app }) {
   )
 }
 
-export default function Simulator() {
+export default function Simulator({ request }) {
   const now = useClock()
   const [view, setView] = useState('lock')
   const [origin, setOrigin] = useState('50% 50%')
@@ -98,6 +98,14 @@ export default function Simulator() {
     setView(id)
   }
   const goHome = () => setView('home')
+
+  // an idea bubble outside the phone asks for an app
+  useEffect(() => {
+    if (!request) return
+    setOrigin('50% 50%')
+    setMode('video')
+    setView(request.id)
+  }, [request])
 
   const app = appById[view]
   const Screen = app && screens[app.id]
