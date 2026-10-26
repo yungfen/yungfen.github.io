@@ -65,11 +65,21 @@ function HomeScreen({ now, onOpen }) {
   )
 }
 
+// Real screen recording for an app (set `video` in apps.js); plays muted in a loop.
+function ScreenVideo({ app }) {
+  return (
+    <div className="scr scr-video">
+      <video src={app.video} poster={app.poster} autoPlay muted loop playsInline aria-label={`${app.name} screen recording`} />
+    </div>
+  )
+}
+
 export default function Simulator() {
   const now = useClock()
   const [view, setView] = useState('lock')
   const [origin, setOrigin] = useState('50% 50%')
   const [toast, setToast] = useState(null)
+  const [mode, setMode] = useState('video')
 
   useEffect(() => {
     if (!toast) return
@@ -84,6 +94,7 @@ export default function Simulator() {
       const b = e.currentTarget.getBoundingClientRect()
       setOrigin(`${((b.left + b.width / 2 - r.left) / r.width) * 100}% ${((b.top + b.height / 2 - r.top) / r.height) * 100}%`)
     }
+    setMode('video')
     setView(id)
   }
   const goHome = () => setView('home')
@@ -97,7 +108,14 @@ export default function Simulator() {
       {view !== 'lock' && <HomeScreen now={now} onOpen={open} />}
       {app && (
         <div className="ios-app-view" style={{ transformOrigin: origin }} key={app.id}>
-          <Screen app={app} now={now} toast={setToast} open={open} />
+          {app.video && mode === 'video'
+            ? <ScreenVideo app={app} />
+            : <Screen app={app} now={now} toast={setToast} open={open} />}
+          {app.video && (
+            <button type="button" className="mode-pill" onClick={() => setMode(m => (m === 'video' ? 'demo' : 'video'))}>
+              {mode === 'video' ? 'Try it yourself ›' : '▶ Watch recording'}
+            </button>
+          )}
           <button type="button" className="ios-home-bar dark hit" onClick={goHome} aria-label="Go to home screen" />
         </div>
       )}

@@ -146,7 +146,7 @@ const earlierProjects = [
   }
 ]
 
-const SPARKLE_COLORS = ['#ebbcba', '#c4a7e7', '#9ccfd8', '#f6c177']
+const SPARKLE_COLORS = ['#e8a09c', '#a98ad6', '#5fb3c1', '#f0b04f']
 
 
 function MagicCursor() {

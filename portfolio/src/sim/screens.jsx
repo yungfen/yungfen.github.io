@@ -125,7 +125,7 @@ export function EnglishTown({ app, now, toast }) {
     const asked = new Set(msgs.filter(m => m.from === 'me').map(m => m.text))
     return (
       <div className="scr scr-town">
-        <StatusBar now={now} />
+        <StatusBar now={now} tone="dark" />
         <Header title={`${who.emoji} ${who.name}`} onBack={() => setWho(null)} tone="dark" />
         <div className="chat" ref={listRef}>
           {msgs.map((m, i) => <div key={i} className={`bubble ${m.from}`}>{m.text}</div>)}
@@ -142,7 +142,7 @@ export function EnglishTown({ app, now, toast }) {
 
   return (
     <div className="scr scr-town">
-      <StatusBar now={now} />
+      <StatusBar now={now} tone="dark" />
       <div className="town-hero" style={{ backgroundImage: 'url(/screenshots/english-town.png)' }}>
         <div>
           <span className="pill">VR English practice</span>
@@ -513,7 +513,7 @@ export function Festivals({ app, now, toast }) {
   const [f, setF] = useState(null)
   return (
     <div className="scr scr-fest">
-      <StatusBar now={now} />
+      <StatusBar now={now} tone="dark" />
       <Header title={f ? `${f.e} ${f.n}` : 'Western Festivals'} onBack={f ? () => setF(null) : null} tone="dark" />
       {!f ? (
         <div className="fest-grid">

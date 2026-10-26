@@ -1,4 +1,5 @@
 // Apps shown on the simulated iPhone on the homepage.
+// video: optional real screen recording (e.g. '/sim/video/clipway.mp4'); it plays when the app opens.
 // kind: 'web' opens the live site, 'ios' is in TestFlight, 'appinventor' can be downloaded (Android .apk / App Inventor link).
 export const apps = [
   {

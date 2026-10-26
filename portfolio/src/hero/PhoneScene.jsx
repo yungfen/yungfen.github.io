@@ -44,8 +44,8 @@ function buildPhone() {
   const phone = new THREE.Group()
 
   const frameMat = new THREE.MeshPhysicalMaterial({
-    color: 0x6b6478,
-    metalness: 0.95,
+    color: 0xd9cfe3,
+    metalness: 0.9,
     roughness: 0.28,
     clearcoat: 0.6,
     clearcoatRoughness: 0.2
@@ -75,7 +75,7 @@ function buildPhone() {
   // frosted back glass
   const back = new THREE.Mesh(
     new THREE.ShapeGeometry(roundedRect(PHONE_W - 10, PHONE_H - 10, PHONE_R - 5), 24),
-    new THREE.MeshPhysicalMaterial({ color: 0x6f6585, roughness: 0.6, metalness: 0.1, clearcoat: 0.15 })
+    new THREE.MeshPhysicalMaterial({ color: 0xe6dcef, roughness: 0.55, metalness: 0.05, clearcoat: 0.2 })
   )
   back.rotation.y = Math.PI
   back.position.z = -FRONT_Z - 0.4
@@ -86,13 +86,13 @@ function buildPhone() {
     new THREE.ExtrudeGeometry(roundedRect(170, 170, 46), {
       depth: 6, bevelEnabled: true, bevelThickness: 2, bevelSize: 2, bevelSegments: 3, curveSegments: 16
     }),
-    new THREE.MeshPhysicalMaterial({ color: 0x9a90b2, roughness: 0.25, metalness: 0.2, clearcoat: 1 })
+    new THREE.MeshPhysicalMaterial({ color: 0xd8cce6, roughness: 0.25, metalness: 0.2, clearcoat: 1 })
   )
   bump.rotation.y = Math.PI
   bump.position.set(PHONE_W / 2 - 110, PHONE_H / 2 - 110, -FRONT_Z - 0.5)
   phone.add(bump)
 
-  const ringMat = new THREE.MeshStandardMaterial({ color: 0x3a3542, metalness: 1, roughness: 0.3 })
+  const ringMat = new THREE.MeshStandardMaterial({ color: 0xbdb2cc, metalness: 1, roughness: 0.3 })
   const lensMat = new THREE.MeshPhysicalMaterial({ color: 0x0a0a14, roughness: 0.05, clearcoat: 1, metalness: 0.3 })
   const lensPos = [[-38, 38], [-38, -38], [38, 0]]
   for (const [lx, ly] of lensPos) {
@@ -267,10 +267,10 @@ export default function PhoneScene({ children, onIntroDone, skip }) {
     const key = new THREE.DirectionalLight(0xffffff, 1.4)
     key.position.set(600, 900, 1200)
     scene.add(key)
-    const rim = new THREE.DirectionalLight(0xc4a7e7, 1.2)
+    const rim = new THREE.DirectionalLight(0xf3c6c2, 1.0)
     rim.position.set(-900, 300, -400)
     scene.add(rim)
-    scene.add(new THREE.AmbientLight(0xffffff, 0.35))
+    scene.add(new THREE.AmbientLight(0xffffff, 0.6))
 
     const camera = new THREE.PerspectiveCamera(30, 1, 10, 10000)
 
