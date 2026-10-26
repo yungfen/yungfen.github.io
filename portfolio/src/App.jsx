@@ -36,7 +36,7 @@ const projects = [
   {
     title: 'Comment Generator',
     subtitle: 'Montessori teacher feedback',
-    url: 'https://teacher-evaulation.netlify.app/',
+    url: 'https://teacher-portal.yungfen.workers.dev/',
     image: '/screenshots/teacher.png',
     description: ['Turns classroom notes into positive, Montessori-aligned comments', 'Import a whole class from CSV / Excel', 'Generate and export in batches'],
     tech: ['React', 'Claude API'],

@@ -28,7 +28,7 @@ export const apps = [
     icon: '🌱',
     bg: 'linear-gradient(145deg, #ebbcba, #d16d8c)',
     kind: 'web',
-    url: 'https://teacher-evaulation.netlify.app/',
+    url: 'https://teacher-portal.yungfen.workers.dev/',
     tagline: 'Montessori-aligned student feedback'
   },
   {
