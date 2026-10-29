@@ -20,6 +20,7 @@ export const apps = [
     icon: '📝',
     bg: 'linear-gradient(145deg, #f6c177, #e07b53)',
     kind: 'web',
+    url: 'https://teacher-portal.yungfen.workers.dev/',
     tagline: 'Grade 8 quiz generator + class records'
   },
   {
