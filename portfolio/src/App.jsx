@@ -445,7 +445,7 @@ function App() {
         <section id="about" className="section">
           <h2 className="section-title">About Me</h2>
           <p className="section-lede">
-            I am a software developer with a passion for creating innovative solutions.
+            Elementary school English teacher and app developer, building tools for English learners.
           </p>
           <div className="about-grid">
             <div className="about-block">
